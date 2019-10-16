@@ -1,0 +1,14 @@
+main_B.py:157: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  data, target = Variable(data, volatile=True), Variable(target)
+/home/dnurch2s/anaconda3/envs/pqkd/lib/python3.6/site-packages/torch/nn/_reduction.py:49: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Traceback (most recent call last):
+  File "res56prune.py", line 50, in <module>
+    print("=> no checkpoint found at '{}'".format(args.resume))
+AttributeError: 'Namespace' object has no attribute 'resume'
+Traceback (most recent call last):
+  File "main_finetune.py", line 101, in <module>
+    checkpoint = torch.load(args.refine)
+  File "/home/dnurch2s/anaconda3/envs/pqkd/lib/python3.6/site-packages/torch/serialization.py", line 366, in load
+    f = open(f, 'rb')
+IsADirectoryError: [Errno 21] Is a directory: './pruned'

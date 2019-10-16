@@ -1,0 +1,340 @@
+(pqkd) diennur@diennurUbuntu:~/Documents/RnD/Compression_RnD_HBRS/src/rethinking-network-pruning/cifar/l1-norm-pruning$ python main_B.py --dataset cifar10 --arch resnet --depth 56
+Files already downloaded and verified
+  + Number of FLOPs: 0.25257G
+  + Number of FLOPs: 0.25257G
+Train Epoch: 0 [0/50000 (0.0%)]	Loss: 3.510558
+Train Epoch: 0 [6400/50000 (12.8%)]	Loss: 2.242962
+Train Epoch: 0 [12800/50000 (25.6%)]	Loss: 2.185108
+Train Epoch: 0 [19200/50000 (38.4%)]	Loss: 2.221274
+Train Epoch: 0 [25600/50000 (51.2%)]	Loss: 2.116739
+Train Epoch: 0 [32000/50000 (63.9%)]	Loss: 2.030736
+Train Epoch: 0 [38400/50000 (76.7%)]	Loss: 1.899892
+Train Epoch: 0 [44800/50000 (89.5%)]	Loss: 2.130835
+main_B.py:163: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  data, target = Variable(data, volatile=True), Variable(target)
+/home/diennur/anaconda3/envs/pqkd/lib/python3.7/site-packages/torch/nn/_reduction.py:43: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+
+Test set: Average loss: 1.8762, Accuracy: 2940/10000 (29.0%)
+
+Train Epoch: 1 [0/50000 (0.0%)]	Loss: 1.787457
+Train Epoch: 1 [6400/50000 (12.8%)]	Loss: 1.820669
+Train Epoch: 1 [12800/50000 (25.6%)]	Loss: 1.630092
+Train Epoch: 1 [19200/50000 (38.4%)]	Loss: 1.674510
+Train Epoch: 1 [25600/50000 (51.2%)]	Loss: 1.939401
+Train Epoch: 1 [32000/50000 (63.9%)]	Loss: 1.853157
+Train Epoch: 1 [38400/50000 (76.7%)]	Loss: 1.864536
+Train Epoch: 1 [44800/50000 (89.5%)]	Loss: 1.776762
+
+Test set: Average loss: 1.7264, Accuracy: 3677/10000 (36.0%)
+
+Train Epoch: 2 [0/50000 (0.0%)]	Loss: 1.827964
+Train Epoch: 2 [6400/50000 (12.8%)]	Loss: 1.780929
+Train Epoch: 2 [12800/50000 (25.6%)]	Loss: 1.708351
+Train Epoch: 2 [19200/50000 (38.4%)]	Loss: 1.774806
+Train Epoch: 2 [25600/50000 (51.2%)]	Loss: 1.656882
+Train Epoch: 2 [32000/50000 (63.9%)]	Loss: 1.631246
+Train Epoch: 2 [38400/50000 (76.7%)]	Loss: 1.794454
+Train Epoch: 2 [44800/50000 (89.5%)]	Loss: 1.818112
+
+Test set: Average loss: 1.6992, Accuracy: 3793/10000 (37.0%)
+
+(pqkd) diennur@diennurUbuntu:~/Documents/RnD/Compression_RnD_HBRS/src/rethinking-network-pruning/cifar/l1-norm-pruning$ ^C
+(pqkd) diennur@diennurUbuntu:~/Documents/RnD/Compression_RnD_HBRS/src/rethinking-network-pruning/cifar/l1-norm-pruning$ python res56prune.py --dataset cifar10 -v A --model ./logs/checkpoint.pth.tar --save ./pruned
+=> loading checkpoint './logs/checkpoint.pth.tar'
+=> loaded checkpoint './logs/checkpoint.pth.tar' (epoch 3) Prec1: 0.000000
+Pre-processing Successful!
+res56prune.py:80: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  data, target = Variable(data, volatile=True), Variable(target)
+
+Test set: Accuracy: 3793/10000 (37.0%)
+
+i should save now!
+ResNet(
+  (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (2): BasicBlock(
+      (conv1): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (3): BasicBlock(
+      (conv1): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (4): BasicBlock(
+      (conv1): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (5): BasicBlock(
+      (conv1): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (6): BasicBlock(
+      (conv1): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (7): BasicBlock(
+      (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (8): BasicBlock(
+      (conv1): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (2): BasicBlock(
+      (conv1): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (3): BasicBlock(
+      (conv1): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (4): BasicBlock(
+      (conv1): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (5): BasicBlock(
+      (conv1): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (6): BasicBlock(
+      (conv1): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (7): BasicBlock(
+      (conv1): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (8): BasicBlock(
+      (conv1): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 57, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(57, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(57, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (2): BasicBlock(
+      (conv1): Conv2d(64, 57, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(57, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(57, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (3): BasicBlock(
+      (conv1): Conv2d(64, 57, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(57, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(57, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (4): BasicBlock(
+      (conv1): Conv2d(64, 57, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(57, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(57, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (5): BasicBlock(
+      (conv1): Conv2d(64, 57, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(57, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(57, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (6): BasicBlock(
+      (conv1): Conv2d(64, 57, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(57, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(57, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (7): BasicBlock(
+      (conv1): Conv2d(64, 57, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(57, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(57, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (8): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (avgpool): AvgPool2d(kernel_size=8, stride=8, padding=0)
+  (fc): Linear(in_features=64, out_features=10, bias=True)
+)
+
+Test set: Accuracy: 2737/10000 (27.0%)
+
+number of parameters: 773336
+
+(pqkd) diennur@diennurUbuntu:~/Documents/RnD/Compression_RnD_HBRS/src/rethinking-network-pruning/cifar/l1-norm-pruning$ python main_finetune.py --refine ./pruned/pruned.pth.tar --dataset cifar10 --arch resnet --depth 56 --epochs 3
+Files already downloaded and verified
+Train Epoch: 0 [0/50000 (0.0%)]	Loss: 1.814936
+Train Epoch: 0 [6400/50000 (12.8%)]	Loss: 1.747798
+Train Epoch: 0 [12800/50000 (25.6%)]	Loss: 1.800986
+Train Epoch: 0 [19200/50000 (38.4%)]	Loss: 1.756015
+Train Epoch: 0 [25600/50000 (51.2%)]	Loss: 1.829396
+Train Epoch: 0 [32000/50000 (63.9%)]	Loss: 1.899685
+Train Epoch: 0 [38400/50000 (76.7%)]	Loss: 1.803038
+Train Epoch: 0 [44800/50000 (89.5%)]	Loss: 1.798676
+main_finetune.py:155: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  data, target = Variable(data, volatile=True), Variable(target)
+/home/diennur/anaconda3/envs/pqkd/lib/python3.7/site-packages/torch/nn/_reduction.py:43: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+
+Test set: Average loss: 1.7086, Accuracy: 3707/10000 (37.0%)
+
+Train Epoch: 1 [0/50000 (0.0%)]	Loss: 1.725347
+Train Epoch: 1 [6400/50000 (12.8%)]	Loss: 1.716490
+Train Epoch: 1 [12800/50000 (25.6%)]	Loss: 1.654723
+Train Epoch: 1 [19200/50000 (38.4%)]	Loss: 1.805652
+Train Epoch: 1 [25600/50000 (51.2%)]	Loss: 1.655428
+Train Epoch: 1 [32000/50000 (63.9%)]	Loss: 1.776615
+Train Epoch: 1 [38400/50000 (76.7%)]	Loss: 1.572042
+Train Epoch: 1 [44800/50000 (89.5%)]	Loss: 1.910073
+
+Test set: Average loss: 1.6967, Accuracy: 3747/10000 (37.0%)
+
+Train Epoch: 2 [0/50000 (0.0%)]	Loss: 1.749760
+Train Epoch: 2 [6400/50000 (12.8%)]	Loss: 1.714556
+Train Epoch: 2 [12800/50000 (25.6%)]	Loss: 1.840562
+Train Epoch: 2 [19200/50000 (38.4%)]	Loss: 1.709960
+Train Epoch: 2 [25600/50000 (51.2%)]	Loss: 1.774056
+Train Epoch: 2 [32000/50000 (63.9%)]	Loss: 1.523981
+Train Epoch: 2 [38400/50000 (76.7%)]	Loss: 1.694813
+Train Epoch: 2 [44800/50000 (89.5%)]	Loss: 1.866824
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+(pqkd) diennur@diennurUbuntu:~/Documents/RnD/Compression_RnD_HBRS/src/rethinking-network-pruning/cifar/l1-norm-pruning$ python throughput_latency.py --dataset cifar10 --arch resnet --depth 56
+Files already downloaded and verified
+Running prediction...
+/home/diennur/anaconda3/envs/pqkd/lib/python3.7/site-packages/torch/nn/_reduction.py:43: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+
+Test set: Average loss: 1.6650, Accuracy: 3808/10000 (38.0%)
+
+Throughput: 0.0256 fps
+Latency: 43900. ms
+Latency StdDev: 3.298310 (s)
+

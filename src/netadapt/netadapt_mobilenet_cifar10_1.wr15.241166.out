@@ -1,0 +1,48 @@
+['abstractmethod', 'alexnet', 'helloworld', 'mobilenet']
+Namespace(arch='mobilenet', budget=None, budget_ratio=0.25, dataset_path='data/', finetune_lr=0.001, gpus=[1], init_model_path='models/mobilenet/model.pth.tar', init_resource_reduction=None, init_resource_reduction_ratio=0.025, input_data_shape=[3, 224, 224], lookup_table_path=None, max_iters=30, resource_reduction_decay=0.96, resource_type='FLOPS', resume=False, save_interval=-1, short_term_fine_tune_iteration=500, working_folder='models/mobilenet/prune-by-mac')
+Create directory models/mobilenet/prune-by-mac
+Create directory models/mobilenet/prune-by-mac/master
+Create directory models/mobilenet/prune-by-mac/worker
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to data/cifar-10-python.tar.gz
+Extracting data/cifar-10-python.tar.gz to data/
+Files already downloaded and verified
+Percent: [----------] 0.00% (0/391)  
+Percent: [----------] 2.56% (10/391)  
+Percent: [#---------] 5.12% (20/391)  
+Percent: [#---------] 7.67% (30/391)  
+Percent: [#---------] 10.23% (40/391)  
+Percent: [#---------] 12.79% (50/391)  
+Percent: [##--------] 15.35% (60/391)  
+Percent: [##--------] 17.90% (70/391)  
+Percent: [##--------] 20.46% (80/391)  
+Percent: [##--------] 23.02% (90/391)  
+Percent: [###-------] 25.57% (100/391)  
+Percent: [###-------] 28.13% (110/391)  
+Percent: [###-------] 30.69% (120/391)  
+Percent: [###-------] 33.25% (130/391)  
+Percent: [####------] 35.81% (140/391)  
+Percent: [####------] 38.36% (150/391)  
+Percent: [####------] 40.92% (160/391)  
+Percent: [####------] 43.48% (170/391)  
+Percent: [#####-----] 46.04% (180/391)  
+Percent: [#####-----] 48.59% (190/391)  
+Percent: [#####-----] 51.15% (200/391)  
+Percent: [#####-----] 53.71% (210/391)  
+Percent: [######----] 56.27% (220/391)  
+Percent: [######----] 58.82% (230/391)  
+Percent: [######----] 61.38% (240/391)  
+Percent: [######----] 63.94% (250/391)  
+Percent: [#######---] 66.50% (260/391)  
+Percent: [#######---] 69.05% (270/391)  
+Percent: [#######---] 71.61% (280/391)  
+Percent: [#######---] 74.17% (290/391)  
+Percent: [########--] 76.73% (300/391)  
+Percent: [########--] 79.28% (310/391)  
+Percent: [########--] 81.84% (320/391)  
+Percent: [########--] 84.40% (330/391)  
+Percent: [#########-] 86.96% (340/391)  
+Percent: [#########-] 89.51% (350/391)  
+Percent: [#########-] 92.07% (360/391)  
+Percent: [#########-] 94.63% (370/391)  
+Percent: [##########] 97.19% (380/391)  
+Percent: [##########] 99.74% (390/391) 

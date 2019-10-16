@@ -1,0 +1,26 @@
+%!TEX root = ../report.tex
+
+\begin{document}
+    \chapter{State of the Art}
+	There are several ways to obtain faster inference for DNN. One of the method is model compression. Compressing models of DNN can be divided into three major classes: \cite{Wen2017LearningIS} removal of DNN structure that is redundant, approximation of DNN function, and architecture search which creates and designs a compact DNN. This research is concentrated on the first two methods.
+	
+	Model compression by removal of redundant structures are extensively studied. Pruning the network is an example that is widely used as it is able to simplify DNN models while also retain the performance of the original models. \cite{Tang2019BringingGN}
+	
+	Knowledge distillation, on the other hand, is a method that approximates DNN function. A large computationally expensive model is able to be compressed into a single computational efficient neural network. \cite{Mirzadeh2019ImprovedKD}.
+	
+	In this section,each method will be introduced and then explained how it is used in the experiments on section 4. 
+	
+    \section{Pruning Methods}
+    Pruning in neural network field is an act to reduce the extent of the network by removal of superfluous or unwanted parts. Pruning methods are divided into two main categories: unstructured pruning (fine-grained pruning) and structured pruning (coarse-grained pruning) \cite{8114708}
+    
+    \subsection{Unstructured Pruning}
+    Unstructured or fine-grained pruning is a method to eliminate weight parameters of the neural network that are deemed unnecessary. As the result network will be sparse, specialized hardware or libraries will be needed in order to fasten the inference of the network.\cite{Liu2018RethinkingTV} 
+    
+    Several works developed in this methods are individual weight pruning based on Hessian matrix, \cite{NIPS1992_647} deep compression by training, pruning, and fine tuning \cite{Han2015DeepCC}, and variational dropout \cite{Molchanov2017VariationalDS}
+    
+    \subsection{Structured Pruning}
+    
+    \section{Quantization Method}
+    \section{Knowledge Distillation Methods}
+    \section{Limitations of previous work}
+\end{document}

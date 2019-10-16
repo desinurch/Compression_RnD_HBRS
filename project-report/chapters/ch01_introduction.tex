@@ -1,0 +1,58 @@
+%!TEX root = ../report.tex
+
+\begin{document}
+    \chapter{Introduction}
+
+    Neural networks (NNs) are algorithms that are designed after a human brain, modeled to process a function of interest such that it is able to acquire knowledge from the environment and store the knowledge in synaptic weights. The first model of a neuron in NN was proposed in 1943, where Warren McCulloch and Walter Pitts create a model that consists of a single neuron and activation function using threshold logic unit (TLU). Weights as input are processed using TLU, where if it exceeds certain threshold, output will be high valued.
+    
+    Network from the neurons defined as layered structure of neurons where it may range from single-layer to multiple-layer of neurons. The architecture of NN can either be deep or shallow. Deep Neural Networks (DNN) are NN with layer consists of more than 3. As DNNs are able to process tasks end-to-end, there are four kind of
+    neural networks that is currently developed. Simple neural network, convolutional neural network, recurrent neural network, and hybrid neural network.
+    
+    Data in each of the applications are represented and processed using DNNs. The performance of these tasks are aligned with the size of the network, where it is likely to increase as the network is made larger and deeper. As an example, residual network (ResNet) performance comparison on 20 layers network with 0.27 millions parameters and 110 layers network with 1.7 millions parameters provide 8.75\% errors and 6.43\% errors respectively.
+    
+    However, a large network requires a large support of resources. Therefore, it is only applicable to recent hardware development, such as NVIDIA GPU. Large network is not able to be processed on devices such as mobile phones, Internet of Things (IoT), and wearables as three main problems resurfaced as stated in Network Slimming (Liu et al. 2017):
+    \begin{enumerate}
+    	\item The size of the neural network : neural network contains millions of parameters that needs to be processed upon inferencing. These parameters consumes memory, for example, convolutional neural network training using ImageNet dataset consumes 300MB which considered a large consumption for mobile devices
+    	\item Run-time memory : upon importing the neural network, while processing tasks, there are also responses created from the neural network that consumes more part of the memory and hence it burden resource-constrained devices to provide even more memory to allocate upon processing tasks which is possible for high-end devices such as GPU
+    	\item Inference time : image classification tasks which mainly uses convolutional neural networks consists of several layers of convolution processes that requires minutes to process on each layer. This application is not possible on real-time application on mobile devices as it requires long time to process
+    \end{enumerate}
+    
+    This leads to development in compression of DNNs, hence a compressed DNN is able to be processed on mobile devices. There are various ways to compress a DNN, including application of sparsity to the network.
+    
+    A sparse network is a network that contains fewer links from one part of the network, such as neuron or layers, to another as the connections among the network is eliminated or pruned based on certain conditions. The conditions to prune is based on the importance of the respective part of the network whether it possess the ability to contribute to the network performance. With these elimination, larger network can be built to obtain much better performance of the network. Sparsity by pruning, where network is trained, pruned and fine-tuned repeatedly until network become sparse, is mostly chosen method as pruning is proven to remove parameters on the network without harming accuracy of the process.(Han et al., 2015)
+    
+    Sparsity on the network can be achieved in two ways, that categorizes as follows:
+    \begin{enumerate}
+    	\item Structured method: a pruning technique that eliminates the whole layer of a network, leaving a network that is undamaged. There are three possible methods on recent development in structured pruning, that are channel pruning, filter pruning and layer pruning. This method conserves convolutional structure of the network, therefore it requires no specialized hardware or software to accelerate the process. Previous development in this approaches are: pruning channel based on weights value, activation and deactivation of channel connections randomly, pruning neurons, pruning based on average percentage of zeros in the output and group sparsity
+    	\item Unstructured method: sparsity is referred to zero values in a subset of model parameters thus making the model able to be stored using sparse matrix format. These representation are stated as there are unnecessary parameters that can be eliminated from the network. Sparsity is a consequence of pruning technique which eliminates based on certain parameters and leaving a sparse network to be trained. Weight pruning is one of the examples, where it eliminates unimportant connections based on weights value. Smaller weights are pruned and leaves a network with zero weights. Residue network with sparse properties is able to save memory as model is sparse. Although this method provides higher compression rate than other methods, utilizing this method contains drawbacks such as requirements of specialized hardware or software to accelerate the processing, otherwise improvement in speed does not happen. As an example, on the work of The Lottery Ticket (Frankle and Carbin, 2019), speed to process the weight pruning was not reported.
+    \end{enumerate}
+    
+    Recent advances in sparsity include The Lottery Ticket and SNIP(Lee et al., 2018) stated that network that is sparse can be trained and thus deployed on a hardware. Although other work such by Liu et al. (2019) and Gale et al. (2019) stated that sparse network cannot be trained form scratch and therefore sparsity is introduced by structural pruning which is hardware-friendly. This raises the question of whether sparsity can actually be trained and deployed in a hardware. From the viewpoints of sparsity deployed in a hardware, several work supports that it is applicable as long as it is processed by removing the whole layer of the network. For example, in the work by NVIDIA (Molchanov et al., 2017), not only pruning whole feature-map is able to be applied on a hardware, it also speeds up the process by 3.4 times.
+    
+    NetAdapt (Yang et al., 2018) also prune the network on filter-level that gains 1.7 times inference speed up. Similar works by removing filter are introduced in ThiNet(Luo et al., 2018) and a work by Chin et al. (2018) that not only structured sparsity can be implemented in a hardware, it also provides better performance in time consumption. These current advances in pruned DNNs have only been compared to the original network in accuracy measures whereas speed is not taken into evaluations. Therefore in this research project, it aims to compare and evaluate pruning method, that can be deployed on hardware without any required specialization either on the architecture or library dependencies. This work focuses on evaluating and experimenting which sparsity that is introduced in a hardware to achieve better time processing. It compares whether sparsity, either structured or non-structured in a hardware is able to gain better performance in time. It combines pruning methods, quantizing, and knowledge distillation. State-of-the-art pruning methods evaluated include both open-source and closed-source where the latter will be replicated based on the algorithm provided. Observations in this paper include as follows:
+    \begin{enumerate}
+    	\item Pruned DNNs are able to be trained on hardware without specializations
+    	\item Evaluation of speed in both combination of pruning, quantization and knowledge distillation and individual methods
+    	\item Identifications of benefits and drawbacks on three categories of acceleration after deployment
+    \end{enumerate}
+    
+    Evaluation criteria of the methodologies are based on speeds, accuracy, floating point operations (FLOPs), and the number of parameters used.
+    
+    \begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{rnd_diagram}
+\caption{Figure 1.1 Research Illustration}
+\label{fig:rnd_diagram}
+\end{figure}
+
+\newpage
+    \section{Motivation}
+
+    \section{Challenges and Difficulties}
+    \subsection{Individual Methods}
+    
+    \subsection{Combined Methods}
+
+    \section{Problem Statement}
+    
+\end{document}

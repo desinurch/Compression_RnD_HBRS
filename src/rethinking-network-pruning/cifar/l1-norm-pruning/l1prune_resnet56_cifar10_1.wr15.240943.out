@@ -1,0 +1,14 @@
+Files already downloaded and verified
+  + Number of FLOPs: 0.25257G
+  + Number of FLOPs: 0.25257G
+Train Epoch: 0 [0/50000 (0.0%)]	Loss: 3.494943
+Train Epoch: 0 [6400/50000 (12.8%)]	Loss: 2.016238
+Train Epoch: 0 [12800/50000 (25.6%)]	Loss: 1.920753
+Train Epoch: 0 [19200/50000 (38.4%)]	Loss: 1.701874
+Train Epoch: 0 [25600/50000 (51.2%)]	Loss: 1.963637
+Train Epoch: 0 [32000/50000 (63.9%)]	Loss: 1.706654
+Train Epoch: 0 [38400/50000 (76.7%)]	Loss: 1.477906
+Train Epoch: 0 [44800/50000 (89.5%)]	Loss: 1.765498
+
+Test set: Average loss: 1.5695, Accuracy: 4321/10000 (43.0%)
+

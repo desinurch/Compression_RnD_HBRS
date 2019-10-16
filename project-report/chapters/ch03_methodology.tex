@@ -1,0 +1,36 @@
+%!TEX root = ../report.tex
+
+\begin{document}
+    \chapter{Methodology}
+
+    The goal of this research is to compare methods of model compression to gain faster inference with minimum tradeoff to accuracy. Sections below elaborates setup and experiment design to the work. 
+
+    \section{Setup}
+    The network is tested on GenuineIntel Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz. Processor running on 64 bits with 15GB RAM to represent embedded devices.
+    
+    Inference measurement is done using  modified benchmark program from MLMark that measures inference by using "Latency" and "Throughput" metrics.
+    
+    Latency used is defined by time of processing of a single input through one iteration in miliseconds. Measurement is based on industrial metric where it is taking 95\% of the time the machine is able to perform well. The Python program takes warming up predictions and then calculate average inference over 10 iterations.
+    
+    Meanwhile in throughput, unit is in frames per second as the model's task is classifications of images. Throughput is calculated by multiplication of iterations and batch sizes divided by amount of time required to process. 
+
+    \section{Experimental Design}
+    Design of the experiments conducted are divided into four sections:
+    \begin{enumerate}
+    	\item Comparison of pruning methods
+    	\item Utilization of quantization
+    	\item Comparison of knowledge distillation methods
+    	\item Integration of three methods
+    \end{enumerate}
+    These four sections are compared using elaborated metrics, that are latency, throughput, and accuracy.
+    
+    Networks are trained using PyTorch 1.0.1 and Python 3.6.9 that runs on CUDA 9.2 and cuDNN 7.4. Hardware for training has specifications as follows:
+    \begin{enumerate}
+    	\item Nvidia Tesla V100 SXM2 GPU with 5120 Cuda cores
+    	\item 16 GB memory
+    	\item system interface PCIe 3.0 x16 
+    	\item Nvidia Volta architecture 
+    \end{enumerate}
+    
+    Experiment is limited to CIFAR-10 \cite{Krizhevsky09learningmultiple} dataset. It is a well-known dataset to compare model compression techniques. 
+\end{document}
