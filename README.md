@@ -4,6 +4,9 @@
 Code and documentation for research and development project with a topic in Deep Neural Network Compression as partial fulfillmrnt in Masters of Autonomous Systems program.
 
 ### Repository structure:
-	- L1 norm pruning: clone of https://github.com/Eric-mingjie/rethinking-network-pruning/tree/master/cifar/l1-norm-pruning based on the implementation of the paper "[Pruning Filters For Efficient ConvNets][https://arxiv.org/pdf/1608.08710.pdf]"
-	- NetAdapt: clone of https://github.com/NatGr/Master_Thesis/tree/master/NetAdapt implementation of the paper "[NetAdapt: Platform-Aware Neural Network Adaptation for Mobile Applications][http://arxiv.org/abs/1804.03230]", several modifications were made (the main ones are: fisher pruning instead of weights-norm pruning and training from scratch rather than long term fine-tuning)
-	- report of research and development project
+	- L1 norm pruning: cloned from https://github.com/Eric-mingjie/rethinking-network-pruning/tree/master/cifar/l1-norm-pruning with minor modifications. Based on the implementation of the paper "[Pruning Filters For Efficient ConvNets][https://arxiv.org/pdf/1608.08710.pdf]"
+	- Weight level pruning : cloned from https://github.com/Eric-mingjie/rethinking-network-pruning/tree/master/cifar/l1-norm-pruning with minor modifications. Based on the implementation of the paper "[Pruning Filters For Efficient ConvNets][https://arxiv.org/pdf/1608.08710.pdf]"
+	- Knowledge Distillation methods : 
+		- Cloned from https://github.com/peterliht/knowledge-distillation-pytorch with minor modifications. Based on the implementation of the paper "[Distilling the Knowledge in a Neural Network][https://arxiv.org/pdf/1503.02531.pdf]"
+		- FitNets implementation. Cloned from https://github.com/AberHu/Knowledge-Distillation-Zoo with modifications. Based on the implementation of the paper "[FitNets: Hints for Thin Deep Nets][https://arxiv.org/pdf/1412.6550.pdf]"
+	- Report of research and development project
