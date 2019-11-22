@@ -1,0 +1,55 @@
+Files already downloaded and verified
+Files already downloaded and verified
+False
+the number of teacher model parameters: 590426
+the number of student model parameters: 175258
+Performance of teacher network
+
+Distillation epoch: 0
+source  torch.Size([64, 16, 32, 32])
+
+ target  torch.Size([64, 64, 32, 32])
+
+ margin  tensor([[[[-0.3627]],
+
+         [[-0.2806]],
+
+         [[-0.1740]],
+
+         [[-0.2872]],
+
+         [[-0.1473]],
+
+         [[-0.2454]],
+
+         [[-0.1047]],
+
+         [[-0.3329]],
+
+         [[-0.3696]],
+
+         [[-0.1280]],
+
+         [[-0.1279]],
+
+         [[-0.1335]],
+
+         [[-0.4273]],
+
+         [[-0.2789]],
+
+         [[-0.6784]],
+
+         [[-0.4285]]]])
+Traceback (most recent call last):
+  File "train_with_distillation.py", line 146, in <module>
+    train_loss = train_with_distill(d_net, epoch)
+  File "train_with_distillation.py", line 88, in train_with_distill
+    outputs, loss_distill = d_net(inputs)
+  File "/home/dnurch2s/anaconda3/envs/pqkd/lib/python3.6/site-packages/torch/nn/modules/module.py", line 489, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/dnurch2s/OKD/distiller.py", line 72, in forward
+    loss_distill += distillation_loss(s_feats[i], t_feats[i].detach(), getattr(self, 'margin%d' % (i+1))) \
+  File "/home/dnurch2s/OKD/distiller.py", line 14, in distillation_loss
+    (source - target)**2 * ((source > target) & (target > margin) & (target <= 0)).float() +
+RuntimeError: The size of tensor a (64) must match the size of tensor b (16) at non-singleton dimension 1

@@ -5,7 +5,10 @@
 
     \section{Comparison of Pruning Methods}
 
-    From the results, it is obtained that pruning using structured method performs exceedingly better than unstructured method on embedded device.
+    From the results, comparison on the latency of the network provides weight pruning, as an example of unstructured method, performs worse than structured methods. While L1 pruning without adding batch normalization or sparsity performs the best among all methods. Although latency is obtained the best on L1 norm, it includes trade-off with the lower performance on accuracy.
+    
+    Meanwhile in throughput measurement, the higher the number of frame-per-second, provides faster inference of the network. In this figure, it is also concluded that L1 norm pruning exceeds among modified methods and unstructured pruning.
+    
 
     \section{Use case 2}
 

@@ -1,2 +1,0 @@
-res56prune.py:76: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
-  data, target = Variable(data, volatile=True), Variable(target)
