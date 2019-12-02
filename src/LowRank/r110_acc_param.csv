@@ -1,0 +1,49 @@
+Baseline
+Top1: 81.42   Top5: 99.06
+Duration:  138.45916318893433
+Parameters:  1730810
+
+0.1
+Top1: 22.53   Top5: 88.13
+Duration:  142.2906849384308
+Parameters:  1730895
+
+0.2
+Top1: 32.17   Top5: 93.41
+Duration:  139.36891078948975
+Parameters:  1730970
+
+0.3
+Top1: 55.49   Top5: 97.62
+Duration:  140.7260546684265
+Parameters:  1731045
+
+0.4
+Top1: 61.33   Top5: 97.58
+Duration:  141.15851712226868
+Parameters:  1731120
+
+0.5
+Top1: 66.50   Top5: 98.28
+Duration:  140.00095200538635
+Parameters:  1731195
+
+0.6
+Top1: 73.19   Top5: 98.49
+Duration:  139.56821703910828
+Parameters:  1731270
+
+0.7
+Top1: 74.01   Top5: 98.61
+Duration:  140.43234062194824
+Parameters:  1731345
+
+0.8
+Top1: 76.36   Top5: 98.80
+Duration:  142.04620170593262
+Parameters:  1731420
+
+0.9
+Top1: 80.47   Top5: 98.90
+Duration:  141.3823971748352
+Parameters:  1731495

@@ -10,6 +10,10 @@ spec.loader.exec_module(util)
 def define_tsnet(name, num_class, cuda=True):
 	if name == 'resnet20':
 		net = resnet20(num_class=num_class)
+	elif name == 'resnet10':
+		net = resnet10(num_class=num_class)
+	elif name == 'resnet1':
+		net = resnet1(num_class=num_class)
 	elif name == 'resnet110':
 		net = resnet110(num_class=num_class)
 	elif name == 'resnet56':
@@ -60,6 +64,90 @@ class resblock(nn.Module):
 
 		return out
 
+class resnet1(nn.Module):
+	def __init__(self, num_class):
+		super(resnet1, self).__init__()
+		self.conv1   = nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
+		self.bn1     = nn.BatchNorm2d(16)
+		self.relu    = nn.ReLU(inplace=True)
+
+		self.res1 = self.make_layer(resblock, 1, 16, 16)
+		self.res2 = self.make_layer(resblock, 1, 16, 32)
+		self.res3 = self.make_layer(resblock, 1, 32, 64)
+
+		self.avgpool = nn.AvgPool2d(8)
+		self.fc      = nn.Linear(64, num_class)
+
+		for m in self.modules():
+			if isinstance(m, nn.Conv2d):
+				nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+			elif isinstance(m, nn.BatchNorm2d):
+				nn.init.constant_(m.weight, 1)
+				nn.init.constant_(m.bias, 0)
+
+	def make_layer(self, block, num, in_channels, out_channels):
+		layers = [block(in_channels, out_channels)]
+		for i in range(num-1):
+			layers.append(block(out_channels, out_channels))
+		return nn.Sequential(*layers)
+
+	def forward(self, x):
+		pre = self.conv1(x)
+		pre = self.bn1(pre)
+		pre = self.relu(pre)
+
+		rb1 = self.res1(pre)
+		rb2 = self.res2(rb1)
+		rb3 = self.res3(rb2)
+
+		out = self.avgpool(rb3)
+		out = out.view(out.size(0), -1)
+		out = self.fc(out)
+
+		return pre, rb1, rb2, rb3, out
+
+class resnet10(nn.Module):
+	def __init__(self, num_class):
+		super(resnet10, self).__init__()
+		self.conv1   = nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
+		self.bn1     = nn.BatchNorm2d(16)
+		self.relu    = nn.ReLU(inplace=True)
+
+		self.res1 = self.make_layer(resblock, 2, 16, 16)
+		self.res2 = self.make_layer(resblock, 2, 16, 32)
+		self.res3 = self.make_layer(resblock, 2, 32, 64)
+
+		self.avgpool = nn.AvgPool2d(8)
+		self.fc      = nn.Linear(64, num_class)
+
+		for m in self.modules():
+			if isinstance(m, nn.Conv2d):
+				nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+			elif isinstance(m, nn.BatchNorm2d):
+				nn.init.constant_(m.weight, 1)
+				nn.init.constant_(m.bias, 0)
+
+	def make_layer(self, block, num, in_channels, out_channels):
+		layers = [block(in_channels, out_channels)]
+		for i in range(num-1):
+			layers.append(block(out_channels, out_channels))
+		return nn.Sequential(*layers)
+
+	def forward(self, x):
+		pre = self.conv1(x)
+		pre = self.bn1(pre)
+		pre = self.relu(pre)
+
+		rb1 = self.res1(pre)
+		rb2 = self.res2(rb1)
+		rb3 = self.res3(rb2)
+
+		out = self.avgpool(rb3)
+		out = out.view(out.size(0), -1)
+		out = self.fc(out)
+
+		return pre, rb1, rb2, rb3, out
+
 class resnet20(nn.Module):
 	def __init__(self, num_class):
 		super(resnet20, self).__init__()
@@ -109,9 +197,9 @@ class resnet56(nn.Module):
 		self.bn1     = nn.BatchNorm2d(16)
 		self.relu    = nn.ReLU(inplace=True)
 
-		self.res1 = self.make_layer(resblock, 6, 16, 16)
-		self.res2 = self.make_layer(resblock, 6, 16, 32)
-		self.res3 = self.make_layer(resblock, 6, 32, 64)
+		self.res1 = self.make_layer(resblock, 9, 16, 16)
+		self.res2 = self.make_layer(resblock, 9, 16, 32)
+		self.res3 = self.make_layer(resblock, 9, 32, 64)
 
 		self.avgpool = nn.AvgPool2d(8)
 		self.fc      = nn.Linear(64, num_class)

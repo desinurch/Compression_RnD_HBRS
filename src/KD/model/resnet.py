@@ -97,11 +97,11 @@ class ResNet(nn.Module):
         # Model type specifies number of layers for CIFAR-10 model
 
         if depth >=54:
-            assert (depth - 2) % 6 == 0, 'depth should be 6n+2'
-            n = (depth - 2) // 6
+            assert (depth - 2) % 9 == 0, 'depth should be 6n+2'
+            n = (depth - 2) // 9
             block = Bottleneck
         else:
-            n = (depth - 2) // 9
+            n = (depth - 2) // 6
             block = BasicBlock
 
         self.inplanes = 16
