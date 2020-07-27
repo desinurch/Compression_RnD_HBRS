@@ -1,20 +1,20 @@
 # Research and Development Project
 ## A Comparative Study of Sparsity Methods in Deep Neural Network for Faster Inference
 
-	Code and documentation for research and development project with a topic in Deep Neural Network Compression as partial fulfillment in Masters of Autonomous Systems program.
+Code and documentation for research and development project with a topic in Deep Neural Network Compression as partial fulfillment in Masters of Autonomous Systems program.
 
 ## Overview
 
-	Comparison of compression methods in Deep Learning for image classification task. Comparison is done in terms of speed using the backbone of [MLMark benchmark](https://www.eembc.org/mlmark/). Compression methods observed are as follows:
+Comparison of compression methods in Deep Learning for image classification task. Comparison is done in terms of speed using the backbone of [MLMark benchmark](https://www.eembc.org/mlmark/). Compression methods observed are as follows:
 
-	![Compression Methods](/imgs/methods-compression.png)
+![Compression Methods](/imgs/methods-compression.png)
 
 ## Description
 ### Dataset
-	Dataset used for comparison is [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) to mimic real-life situations.
+Dataset used for comparison is [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) to mimic real-life situations.
 
 ### Model Architecture
-	Dataset are processed using the network of ResNet-56 and ResNet-110 with pre-activations. In model distillation mode, both of the network act as a teacher which knowledge are transferred to student networks; ResNet-1, ResNet-10, and ResNet-20
+Dataset are processed using the network of ResNet-56 and ResNet-110 with pre-activations. In model distillation mode, both of the network act as a teacher which knowledge are transferred to student networks; ResNet-1, ResNet-10, and ResNet-20
 
 ## Results
 ![Speedup vs Compression](/imgs/speedup_vs_compression.png)
