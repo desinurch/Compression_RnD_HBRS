@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 # import util
 import importlib.util
 # Load your module
@@ -275,20 +276,62 @@ class resnet110(nn.Module):
 		return pre, rb1, rb2, rb3, out
 
 # Addition of PreResNet
+# from https://github.com/bearpaw/pytorch-classification/blob/master/models/cifar/preresnet.py
 ########################################################################
+class PreActBottleneck(nn.Module):
+    '''Pre-activation version of the original Bottleneck module.'''
+    expansion = 4
+
+    def __init__(self, in_channels, out_channels, stride=1, downsample=None):
+        super(PreActBottleneck, self).__init__()
+        self.bn1 = nn.BatchNorm2d(in_channels)
+        self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=1, bias=False)
+        self.bn2 = nn.BatchNorm2d(out_channels)
+        self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=stride,
+                               padding=1, bias=False)
+        self.bn3 = nn.BatchNorm2d(out_channels)
+        self.conv3 = nn.Conv2d(out_channels, out_channels * 4, kernel_size=1, bias=False)
+        self.relu = nn.ReLU(inplace=True)
+        self.downsample = downsample
+        self.stride = stride
+
+    def forward(self, x):
+        residual = x
+
+        out = self.bn1(x)
+        out = self.relu(out)
+        out = self.conv1(out)
+
+        out = self.bn2(out)
+        out = self.relu(out)
+        out = self.conv2(out)
+
+        out = self.bn3(out)
+        out = self.relu(out)
+        out = self.conv3(out)
+
+        if self.downsample is not None:
+            residual = self.downsample(x)
+
+        out += residual
+
+        return out
+
+
 class PreResNet110(nn.Module):
     def __init__(self, num_class=10):
         super(PreResNet110, self).__init__()
         # Model type specifies number of layers for CIFAR-10 model
         self.conv1   = nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bn1     = nn.BatchNorm2d(64)
+        self.bn1     = nn.BatchNorm2d(64 * PreActBottleneck.expansion)
         self.relu    = nn.ReLU(inplace=True)
 
-        self.res1 = self.make_layer(resblock, 18, 16, 16)
-        self.res2 = self.make_layer(resblock, 18, 16, 32)
-        self.res3 = self.make_layer(resblock, 18, 32, 64)
+        self.res1 = self.make_layer(PreActBottleneck, 18, 16, 16)
+        self.res2 = self.make_layer(PreActBottleneck, 18, 16, 32)
+        self.res3 = self.make_layer(PreActBottleneck, 18, 32, 64)
         self.avgpool = nn.AvgPool2d(8)
-        self.fc      = nn.Linear(64, num_class)
+        self.fc      = nn.Linear(64 * PreActBottleneck.expansion, num_class)
+
         for m in self.modules():
         	if isinstance(m, nn.Conv2d):
         		nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
@@ -297,10 +340,20 @@ class PreResNet110(nn.Module):
         		nn.init.constant_(m.bias, 0)
 
     def make_layer(self, block, num, in_channels, out_channels):
-    	layers = [block(in_channels, out_channels)]
-    	for i in range(num-1):
-    		layers.append(block(out_channels, out_channels))
-    	return nn.Sequential(*layers)
+        downsample = None
+        if stride != 1 or in_channels != out_channels * block.expansion:
+            downsample = nn.Sequential(
+                nn.Conv2d(in_channels, out_channels * block.expansion,
+                          kernel_size=1, stride=stride, bias=False),
+            )
+
+        layers = []
+        layers.append(block(in_channels, out_channels, stride, downsample))
+        in_channels = out_channels * block.expansion
+        for i in range(1, num):
+            layers.append(block(in_channels, out_channels))
+
+        return nn.Sequential(*layers)
 
     def forward(self, x):
         pre = self.conv1(x)
