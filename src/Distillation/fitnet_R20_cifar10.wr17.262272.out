@@ -1,0 +1,138 @@
+Namespace(batch_size=128, cuda=1, data_name='cifar10', epochs=1, img_root='../data', lr=0.1, momentum=0.9, net_name='resnet20', num_class=10, print_freq=10, save_root='./logs', weight_decay=0.0001)
+----------- Network Initialization --------------
+DataParallel(
+  (module): resnet20(
+    (conv1): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace)
+    (res1): Sequential(
+      (0): resblock(
+        (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): resblock(
+        (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (2): resblock(
+        (conv1): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (res2): Sequential(
+      (0): resblock(
+        (conv1): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (ds): Sequential(
+          (0): Conv2d(16, 32, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): resblock(
+        (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (2): resblock(
+        (conv1): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (res3): Sequential(
+      (0): resblock(
+        (conv1): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (ds): Sequential(
+          (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): resblock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (2): resblock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (avgpool): AvgPool2d(kernel_size=8, stride=8, padding=0)
+    (fc): Linear(in_features=64, out_features=10, bias=True)
+  )
+)
+Total number of parameters: 272474
+-----------------------------------------------
+saving initial parameters......
+Files already downloaded and verified
+Files already downloaded and verified
+epoch: 1  lr: 0.1
+Epoch[1]:[010/391] Time:0.0254 Data:0.0002  loss:2.0768(2.2830)  prec@1:21.88(15.23)  prec@5:71.88(59.92)
+Epoch[1]:[020/391] Time:0.0355 Data:0.0002  loss:2.0321(2.2013)  prec@1:19.53(18.79)  prec@5:78.12(67.50)
+Epoch[1]:[030/391] Time:0.0237 Data:0.0001  loss:1.8761(2.1170)  prec@1:30.47(20.36)  prec@5:89.06(73.02)
+Epoch[1]:[040/391] Time:0.0229 Data:0.0002  loss:1.6596(2.0390)  prec@1:37.50(22.75)  prec@5:85.16(76.31)
+Epoch[1]:[050/391] Time:0.0213 Data:0.0002  loss:1.7342(1.9809)  prec@1:32.81(24.86)  prec@5:88.28(78.53)
+Epoch[1]:[060/391] Time:0.0190 Data:0.0001  loss:1.5577(1.9336)  prec@1:38.28(26.60)  prec@5:89.06(80.18)
+Epoch[1]:[070/391] Time:0.0225 Data:0.0001  loss:1.5747(1.8948)  prec@1:38.28(27.76)  prec@5:90.62(81.50)
+Epoch[1]:[080/391] Time:0.0217 Data:0.0001  loss:1.5375(1.8639)  prec@1:46.09(29.30)  prec@5:92.19(82.40)
+Epoch[1]:[090/391] Time:0.0245 Data:0.0002  loss:1.6481(1.8318)  prec@1:40.62(30.54)  prec@5:88.28(83.39)
+Epoch[1]:[100/391] Time:0.0195 Data:0.0001  loss:1.6180(1.8045)  prec@1:38.28(31.45)  prec@5:86.72(84.15)
+Epoch[1]:[110/391] Time:0.0230 Data:0.0002  loss:1.6604(1.7852)  prec@1:38.28(32.37)  prec@5:89.84(84.64)
+Epoch[1]:[120/391] Time:0.0250 Data:0.0001  loss:1.4244(1.7579)  prec@1:51.56(33.61)  prec@5:91.41(85.25)
+Epoch[1]:[130/391] Time:0.0227 Data:0.0001  loss:1.6422(1.7363)  prec@1:44.53(34.57)  prec@5:87.50(85.72)
+Epoch[1]:[140/391] Time:0.0208 Data:0.0002  loss:1.4444(1.7165)  prec@1:49.22(35.41)  prec@5:92.97(86.20)
+Epoch[1]:[150/391] Time:0.0246 Data:0.0002  loss:1.3703(1.6985)  prec@1:48.44(36.16)  prec@5:89.84(86.58)
+Epoch[1]:[160/391] Time:0.0260 Data:0.0002  loss:1.2415(1.6781)  prec@1:53.12(36.99)  prec@5:95.31(87.01)
+Epoch[1]:[170/391] Time:0.0321 Data:0.0004  loss:1.3286(1.6579)  prec@1:52.34(37.82)  prec@5:95.31(87.44)
+Epoch[1]:[180/391] Time:0.0255 Data:0.0002  loss:1.3696(1.6450)  prec@1:48.44(38.39)  prec@5:92.97(87.66)
+Epoch[1]:[190/391] Time:0.0276 Data:0.0002  loss:1.3503(1.6311)  prec@1:50.78(38.95)  prec@5:90.62(87.94)
+Epoch[1]:[200/391] Time:0.0234 Data:0.0002  loss:1.2834(1.6162)  prec@1:51.56(39.55)  prec@5:94.53(88.29)
+Epoch[1]:[210/391] Time:0.0228 Data:0.0002  loss:1.4673(1.6011)  prec@1:43.75(40.20)  prec@5:92.97(88.54)
+Epoch[1]:[220/391] Time:0.0244 Data:0.0002  loss:1.2448(1.5901)  prec@1:60.16(40.75)  prec@5:91.41(88.75)
+Epoch[1]:[230/391] Time:0.0240 Data:0.0002  loss:1.2182(1.5742)  prec@1:54.69(41.46)  prec@5:93.75(89.01)
+Epoch[1]:[240/391] Time:0.0298 Data:0.0002  loss:1.1672(1.5627)  prec@1:56.25(41.92)  prec@5:94.53(89.22)
+Epoch[1]:[250/391] Time:0.0204 Data:0.0002  loss:1.3529(1.5488)  prec@1:51.56(42.51)  prec@5:92.97(89.46)
+Epoch[1]:[260/391] Time:0.0229 Data:0.0002  loss:1.2084(1.5376)  prec@1:48.44(42.93)  prec@5:96.09(89.66)
+Epoch[1]:[270/391] Time:0.0240 Data:0.0002  loss:1.2812(1.5262)  prec@1:49.22(43.37)  prec@5:96.09(89.87)
+Epoch[1]:[280/391] Time:0.0229 Data:0.0002  loss:1.1860(1.5148)  prec@1:57.81(43.88)  prec@5:96.09(90.08)
+Epoch[1]:[290/391] Time:0.0215 Data:0.0002  loss:1.3367(1.5040)  prec@1:53.91(44.33)  prec@5:92.97(90.24)
+Epoch[1]:[300/391] Time:0.0254 Data:0.0002  loss:1.0728(1.4938)  prec@1:61.72(44.74)  prec@5:94.53(90.39)
+Epoch[1]:[310/391] Time:0.0278 Data:0.0002  loss:1.1476(1.4840)  prec@1:54.69(45.10)  prec@5:97.66(90.57)
+Epoch[1]:[320/391] Time:0.0285 Data:0.0002  loss:1.0328(1.4743)  prec@1:65.62(45.51)  prec@5:97.66(90.75)
+Epoch[1]:[330/391] Time:0.0216 Data:0.0002  loss:1.1896(1.4653)  prec@1:58.59(45.88)  prec@5:95.31(90.88)
+Epoch[1]:[340/391] Time:0.0303 Data:0.0003  loss:1.1618(1.4558)  prec@1:59.38(46.30)  prec@5:96.88(91.01)
+Epoch[1]:[350/391] Time:0.0240 Data:0.0002  loss:1.0435(1.4460)  prec@1:64.84(46.71)  prec@5:95.31(91.15)
+Epoch[1]:[360/391] Time:0.0244 Data:0.0001  loss:1.1524(1.4371)  prec@1:60.16(47.11)  prec@5:96.09(91.28)
+Epoch[1]:[370/391] Time:0.0213 Data:0.0002  loss:1.1101(1.4268)  prec@1:61.72(47.55)  prec@5:94.53(91.43)
+Epoch[1]:[380/391] Time:0.0235 Data:0.0002  loss:1.2371(1.4190)  prec@1:60.16(47.82)  prec@5:96.09(91.54)
+Epoch[1]:[390/391] Time:0.0243 Data:0.0001  loss:1.3166(1.4113)  prec@1:50.78(48.08)  prec@5:94.53(91.65)
+one epoch time is 0.0h0.0m10.234201908111572s
+testing the models......
+Loss: 1.3723, Prec@1: 50.49, Prec@5: 93.11
+testing time is 0.0h0.0m0.7037010192871094s
+saving models......
